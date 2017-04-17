@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+
+NOTE: to view this file locally, start up a simple HTTP server in this directory like this:
+
+python -m SimpleHTTPServer 8000
+
+-->
+<html>
+
+<head>
+  <title>Sample controller and view</title>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="/index.js"></script>
+  <script src="/sample.controller.js"></script>
+</head>
+
+<body ng-app="sampleApp">
+  <div ng-controller="SampleController as sample">
+    <p>Please enter some text, and then press the <strong>Submit text</strong> button.</p>
+    <input
+      type="text"
+      ng-model="sample.inputText" />
+    <input
+      type="button"
+      value="Submit text"
+      ng-disabled="sample.isSubmitButtonDisabled()" />
+  </div>
+</body>
+
+</html>
