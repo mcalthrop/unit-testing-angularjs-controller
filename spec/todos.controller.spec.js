@@ -25,6 +25,21 @@ describe('TodosController', () => {
     });
   });
 
+  describe('#isSubmitButtonDisabled()', () => {
+    it('should be true when inputText is empty', () => {
+      TodosController.inputText = '';
+      expect(TodosController.isSubmitButtonDisabled()).toBe(true);
+    });
+    it('should be false when inputText contains a single character', () => {
+      TodosController.inputText = 'z';
+      expect(TodosController.isSubmitButtonDisabled()).toBe(false);
+    });
+    it('should be false when inputText contains several characters', () => {
+      TodosController.inputText = 'zyx';
+      expect(TodosController.isSubmitButtonDisabled()).toBe(false);
+    });
+  });
+
   describe('#add()', () => {
     it('should call TodosFactory.add() with correct parameter', () => {
       const newTodo = 'laze around';
