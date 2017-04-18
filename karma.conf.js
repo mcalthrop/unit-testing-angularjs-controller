@@ -9,9 +9,11 @@ module.exports = (config) => {
     ],
     autoWatch: true,
     frameworks: ['jasmine'],
+    reporters: ['spec'],
     browsers: ['Chrome'],
     plugins: [
       'karma-chrome-launcher',
+      'karma-spec-reporter',
       'karma-jasmine'
     ],
     singleRun: true
