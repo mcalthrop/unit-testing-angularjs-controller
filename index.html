@@ -12,19 +12,33 @@ python -m SimpleHTTPServer 8000
   <title>Sample controller and view</title>
   <script src="/node_modules/angular/angular.min.js"></script>
   <script src="/js/index.js"></script>
-  <script src="/js/sample.controller.js"></script>
+  <script src="/js/todos.factory.js"></script>
+  <script src="/js/todos.controller.js"></script>
 </head>
 
 <body ng-app="sampleApp">
-  <div ng-controller="SampleController as sample">
-    <p>Please enter some text, and then press the <strong>Submit text</strong> button.</p>
+  <div ng-controller="TodosController as todos">
+    <h1>Todos</h1>
+
+    <h2>Current todos</h2>
+    <ul ng-if="todos.list.length > 0">
+      <li ng-repeat="item in todos.list">{{ item }}</li>
+    </ul>
+    <p ng-if="todos.list.length < 1">
+      <em>No todos currently</em>
+    </p>
+    <button
+      ng-click="todos.clear()"
+      ng-disabled="todos.isClearButtonDisabled()">Clear</button>
+
+    <h2>Add todo</h2>
+    <p>Please enter some text, and then press the <strong>Add todo</strong> button.</p>
     <input
       type="text"
-      ng-model="sample.inputText" />
-    <input
-      type="button"
-      value="Submit text"
-      ng-disabled="sample.isSubmitButtonDisabled()" />
+      ng-model="todos.inputText" />
+    <button
+      ng-disabled="todos.isSubmitButtonDisabled()"
+      ng-click="todos.add()">Add todo</button>
   </div>
 </body>
 
