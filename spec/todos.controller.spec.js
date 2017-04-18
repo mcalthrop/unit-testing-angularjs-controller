@@ -41,4 +41,23 @@ describe('TodosController', () => {
       expect(TodosController.inputText).toEqual('');
     });
   });
+
+  describe('#clear()', () => {
+    it('should call TodosFactory.clear()', () => {
+      const newTodo = 'nothing';
+
+      TodosController.inputText = newTodo;
+      TodosController.add();
+      TodosController.clear();
+      expect(MockTodosFactory.clear).toHaveBeenCalled();
+    });
+    it('should reset list', () => {
+      const newTodo = 'nothing';
+
+      TodosController.inputText = newTodo;
+      TodosController.add();
+      TodosController.clear();
+      expect(TodosController.list).toEqual([]);
+    });
+  });
 });
