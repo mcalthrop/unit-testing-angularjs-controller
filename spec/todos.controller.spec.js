@@ -1,5 +1,5 @@
 describe('TodosController', () => {
-  let TodosController;
+  let ControllerToTest;
   let MockTodosFactory;
 
   beforeEach(() => {
@@ -12,46 +12,46 @@ describe('TodosController', () => {
     };
 
     inject(($controller) => {
-      TodosController = $controller('TodosController', { TodosFactory: MockTodosFactory });
+      ControllerToTest = $controller('TodosController', { TodosFactory: MockTodosFactory });
     });
   });
 
   describe('init()', () => {
     it('should set inputText correctly', () => {
-      expect(TodosController.inputText).toEqual('');
+      expect(ControllerToTest.inputText).toEqual('');
     });
     it('should set list correctly', () => {
-      expect(TodosController.list).toEqual([]);
+      expect(ControllerToTest.list).toEqual([]);
     });
   });
 
   describe('#isSubmitButtonDisabled()', () => {
     it('should be true when inputText is empty', () => {
-      TodosController.inputText = '';
-      expect(TodosController.isSubmitButtonDisabled()).toBe(true);
+      ControllerToTest.inputText = '';
+      expect(ControllerToTest.isSubmitButtonDisabled()).toBe(true);
     });
     it('should be false when inputText contains a single character', () => {
-      TodosController.inputText = 'z';
-      expect(TodosController.isSubmitButtonDisabled()).toBe(false);
+      ControllerToTest.inputText = 'z';
+      expect(ControllerToTest.isSubmitButtonDisabled()).toBe(false);
     });
     it('should be false when inputText contains several characters', () => {
-      TodosController.inputText = 'zyx';
-      expect(TodosController.isSubmitButtonDisabled()).toBe(false);
+      ControllerToTest.inputText = 'zyx';
+      expect(ControllerToTest.isSubmitButtonDisabled()).toBe(false);
     });
   });
 
   describe('#isClearButtonDisabled()', () => {
     it('should be true when list is empty', () => {
-      TodosController.list = [];
-      expect(TodosController.isClearButtonDisabled()).toBe(true);
+      ControllerToTest.list = [];
+      expect(ControllerToTest.isClearButtonDisabled()).toBe(true);
     });
     it('should be false when list contains a single item', () => {
-      TodosController.list = ['z'];
-      expect(TodosController.isClearButtonDisabled()).toBe(false);
+      ControllerToTest.list = ['z'];
+      expect(ControllerToTest.isClearButtonDisabled()).toBe(false);
     });
     it('should be false when list contains several items', () => {
-      TodosController.list = ['z', 'y', 'x'];
-      expect(TodosController.isClearButtonDisabled()).toBe(false);
+      ControllerToTest.list = ['z', 'y', 'x'];
+      expect(ControllerToTest.isClearButtonDisabled()).toBe(false);
     });
   });
 
@@ -59,16 +59,16 @@ describe('TodosController', () => {
     it('should call TodosFactory.add() with correct parameter', () => {
       const newTodo = 'laze around';
 
-      TodosController.inputText = newTodo;
-      TodosController.add();
+      ControllerToTest.inputText = newTodo;
+      ControllerToTest.add();
       expect(MockTodosFactory.add).toHaveBeenCalledWith(newTodo);
     });
     it('should reset inputText', () => {
       const newTodo = 'laze around';
 
-      TodosController.inputText = newTodo;
-      TodosController.add();
-      expect(TodosController.inputText).toEqual('');
+      ControllerToTest.inputText = newTodo;
+      ControllerToTest.add();
+      expect(ControllerToTest.inputText).toEqual('');
     });
   });
 
@@ -76,18 +76,18 @@ describe('TodosController', () => {
     it('should call TodosFactory.clear()', () => {
       const newTodo = 'nothing';
 
-      TodosController.inputText = newTodo;
-      TodosController.add();
-      TodosController.clear();
+      ControllerToTest.inputText = newTodo;
+      ControllerToTest.add();
+      ControllerToTest.clear();
       expect(MockTodosFactory.clear).toHaveBeenCalled();
     });
     it('should reset list', () => {
       const newTodo = 'nothing';
 
-      TodosController.inputText = newTodo;
-      TodosController.add();
-      TodosController.clear();
-      expect(TodosController.list).toEqual([]);
+      ControllerToTest.inputText = newTodo;
+      ControllerToTest.add();
+      ControllerToTest.clear();
+      expect(ControllerToTest.list).toEqual([]);
     });
   });
 });
