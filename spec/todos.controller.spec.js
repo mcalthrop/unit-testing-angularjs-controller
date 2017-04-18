@@ -40,6 +40,21 @@ describe('TodosController', () => {
     });
   });
 
+  describe('#isClearButtonDisabled()', () => {
+    it('should be true when list is empty', () => {
+      TodosController.list = [];
+      expect(TodosController.isClearButtonDisabled()).toBe(true);
+    });
+    it('should be false when list contains a single item', () => {
+      TodosController.list = ['z'];
+      expect(TodosController.isClearButtonDisabled()).toBe(false);
+    });
+    it('should be false when list contains several items', () => {
+      TodosController.list = ['z', 'y', 'x'];
+      expect(TodosController.isClearButtonDisabled()).toBe(false);
+    });
+  });
+
   describe('#add()', () => {
     it('should call TodosFactory.add() with correct parameter', () => {
       const newTodo = 'laze around';
