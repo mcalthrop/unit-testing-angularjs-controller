@@ -9,7 +9,12 @@ describe('TodosController', () => {
     });
   });
 
-  it('should expose title', () => {
-    expect(TodosController.inputText).toEqual('');
+  describe('#init', () => {
+    it('should set inputText correctly', () => {
+      expect(TodosController.inputText).toEqual('');
+    });
+    it('should set list correctly', () => {
+      expect(TodosController.list).toEqual([]);
+    });
   });
 });
