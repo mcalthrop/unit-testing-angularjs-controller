@@ -7,7 +7,6 @@ module.exports = (config) => {
       'js/**/*.js',
       'spec/**/*.spec.js'
     ],
-    autoWatch: true,
     frameworks: ['jasmine'],
     reporters: ['spec'],
     browsers: ['Chrome'],
