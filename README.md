@@ -27,3 +27,7 @@ Run the Karma tests:
 ``` sh
 $ npm test
 ```
+
+## License
+
+[MIT](LICENSE)
